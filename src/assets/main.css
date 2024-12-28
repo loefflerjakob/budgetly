@@ -6,6 +6,11 @@
 }
 
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
   font-family: OpenSans, sans-serif;
 }
