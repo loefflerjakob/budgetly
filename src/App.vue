@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import MainNav from './components/MainNav.vue';
+
 </script>
 
 <template>
   <div class="wrapper">
-    <h1>test</h1>
+    <MainNav />
   </div>
 
 </template>
