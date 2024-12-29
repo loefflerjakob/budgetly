@@ -1,6 +1,11 @@
 <script lang="ts">
+import TableRow from './TableRow.vue';
+
 export default {
   name: 'OverviewTable',
+  components: {
+    TableRow,
+  },
 }
 </script>
 
@@ -15,25 +20,26 @@ export default {
             <th class="text-left p-3">Description</th>
             <th class="text-left p-3">Amount</th>
             <th class="text-left p-3">Date</th>
+            <th class="text-left p-3">Category</th>
             <th class="text-left p-3">Edit</th>
           </tr>
         </thead>
         <tbody>
-          <!-- TODO: Put table rows into own components -->
-          <tr class="bg-zinc-50">
-            <td class="p-3">Shopping</td>
-            <td class="p-3">Bought some new pants from Levis</td>
-            <td class="p-3 text-right"><span class="bg-red-200 rounded-md px-2 py-1.5">- 300,00 €</span></td>
-            <td class="p-3">28.12.2024</td>
-            <td class="p-3"><a>Trash Icon</a></td>
-          </tr>
-          <tr class="bg-zinc-100">
-            <td class="p-3">Christmas Money</td>
-            <td class="p-3">Present from mum</td>
-            <td class="p-3 text-right"><span class="bg-green-200 rounded-md px-2 py-1.5">+ 100,00 €</span></td>
-            <td class="p-3">24.12.2024</td>
-            <td class="p-3"><a>Trash Icon</a></td>
-          </tr>
+          <TableRow title="Christmas Bonus" description="Yearly holiday bonus from the company" :amount="1500.50"
+            :date="new Date('2024-12-20')" category="Income" :rowIndex=0 />
+
+          <TableRow title="Groceries" description="Weekly supermarket shopping" :amount="-125.75"
+            :date="new Date('2024-12-27')" category="Expenses" :rowIndex=1 />
+
+          <TableRow title="Freelance Project" description="Payment for website development" :amount="850.00"
+            :date="new Date('2024-12-15')" category="Income" :rowIndex=2 />
+
+          <TableRow title="Gym Membership" description="Monthly subscription fee" :amount="-45.00"
+            :date="new Date('2024-12-01')" category="Expenses" :rowIndex=3 />
+
+          <TableRow title="Electricity Bill" description="Monthly energy bill" :amount="-200.25"
+            :date="new Date('2024-12-10')" category="Expenses" :rowIndex=4 />
+
         </tbody>
       </table>
     </div>
