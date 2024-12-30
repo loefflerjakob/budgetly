@@ -6,12 +6,9 @@ export default {
 
 <template>
   <div>
-    <h1 class="text-3xl font-bold">Budgetly</h1>
-    <h2 class="font-medium">Track. Save. Thrive.</h2>
+    <RouterLink to="/">
+      <h1 class="text-3xl font-bold">Budgetly</h1>
+      <h2 class="font-medium">Track. Save. Thrive.</h2>
+    </RouterLink>
   </div>
 </template>
-
-
-<styles scoped>
-
-</styles>
