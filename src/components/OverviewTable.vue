@@ -1,16 +1,41 @@
 <script lang="ts">
+import { defineComponent, computed } from 'vue';
 import SumRow from './SumRow.vue';
 import TableRow from './TableRow.vue';
 
-export default {
+// Define the type for the entry object stored in localStorage
+interface Entry {
+  amount: string;
+  title: string;
+  description: string;
+  date: string;
+  category: string;
+}
+
+export default defineComponent({
   name: 'OverviewTable',
   components: {
     TableRow,
     SumRow
   },
-}
-</script>
+  setup() {
+    const entries = computed<Entry[]>(() => {
+      return JSON.parse(localStorage.getItem('entries') || '[]');
+    });
 
+    const totalSum = computed(() => {
+      return entries.value.reduce((sum: number, entry: Entry) => {
+        return sum + parseFloat(entry.amount);
+      }, 0);
+    });
+
+    return {
+      entries,
+      totalSum
+    };
+  }
+});
+</script>
 
 <template>
   <div class="flex justify-center">
@@ -27,55 +52,16 @@ export default {
           </tr>
         </thead>
         <tbody class="max-h-[50vh] overflow-y-auto block">
-          <TableRow title="Christmas Bonus" description="Yearly holiday bonus from the company" :amount="1500.50"
-            :date="new Date('2024-12-20')" category="Income" :rowIndex=0 />
-
-          <TableRow title="Groceries" description="Weekly supermarket shopping" :amount="-125.75"
-            :date="new Date('2024-12-27')" category="Expenses" :rowIndex=1 />
-
-          <TableRow title="Freelance Project" description="Payment for website development" :amount="850.00"
-            :date="new Date('2024-12-15')" category="Income" :rowIndex=2 />
-
-          <TableRow title="Gym Membership" description="Monthly subscription fee" :amount="-45.00"
-            :date="new Date('2024-12-01')" category="Expenses" :rowIndex=3 />
-
-          <TableRow title="Electricity Bill" description="Monthly energy bill" :amount="-200.25"
-            :date="new Date('2024-12-10')" category="Expenses" :rowIndex=4 />
-          <TableRow title="Christmas Bonus" description="Yearly holiday bonus from the company" :amount="1500.50"
-            :date="new Date('2024-12-20')" category="Income" :rowIndex=5 />
-
-          <TableRow title="Groceries" description="Weekly supermarket shopping" :amount="-125.75"
-            :date="new Date('2024-12-27')" category="Expenses" :rowIndex=6 />
-
-          <TableRow title="Freelance Project" description="Payment for website development" :amount="850.00"
-            :date="new Date('2024-12-15')" category="Income" :rowIndex=7 />
-
-          <TableRow title="Gym Membership" description="Monthly subscription fee" :amount="-45.00"
-            :date="new Date('2024-12-01')" category="Expenses" :rowIndex=8 />
-
-          <TableRow title="Electricity Bill" description="Monthly energy bill" :amount="-200.25"
-            :date="new Date('2024-12-10')" category="Expenses" :rowIndex=9 />
-          <TableRow title="Christmas Bonus" description="Yearly holiday bonus from the company" :amount="1500.50"
-            :date="new Date('2024-12-20')" category="Income" :rowIndex=10 />
-
-          <TableRow title="Groceries" description="Weekly supermarket shopping" :amount="-125.75"
-            :date="new Date('2024-12-27')" category="Expenses" :rowIndex=11 />
-
-          <TableRow title="Freelance Project" description="Payment for website development" :amount="850.00"
-            :date="new Date('2024-12-15')" category="Income" :rowIndex=12 />
-
-          <TableRow title="Gym Membership" description="Monthly subscription fee" :amount="-45.00"
-            :date="new Date('2024-12-01')" category="Expenses" :rowIndex=13 />
-
-          <TableRow title="Electricity Bill" description="Monthly energy bill" :amount="-200.25"
-            :date="new Date('2024-12-10')" category="Expenses" :rowIndex=14 />
+          <TableRow v-for="(entry, index) in entries" :key="index" :amount="parseFloat(entry.amount)"
+            :title="entry.title" :description="entry.description" :date="new Date(entry.date)"
+            :category="entry.category" :rowIndex="index" />
         </tbody>
-        <SumRow :sum="1979.50" />
+        <SumRow :sum="totalSum" />
       </table>
     </div>
   </div>
-
 </template>
+
 
 
 <style>

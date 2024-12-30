@@ -15,14 +15,25 @@ export default defineComponent({
     const category = ref('');
 
     const submitForm = () => {
-      console.log({
+      const newEntry = {
         amount: amount.value,
         title: title.value,
         description: description.value,
         date: date.value,
         category: category.value
-      });
-      // TODO add form submition logic
+      };
+
+      const existingEntries = JSON.parse(localStorage.getItem('entries') || '[]');
+      existingEntries.push(newEntry);
+      localStorage.setItem('entries', JSON.stringify(existingEntries));
+
+      amount.value = '';
+      title.value = '';
+      description.value = '';
+      date.value = '';
+      category.value = '';
+
+      alert('Entry added successfully');
     };
 
     return {
@@ -37,14 +48,16 @@ export default defineComponent({
 });
 </script>
 
+
 <template>
   <div class="m-8 max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
     <form @submit.prevent="submitForm" class="space-y-4">
       <div>
         <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
-        <input type="number" id="amount" v-model="amount" required
+        <input type="number" id="amount" v-model="amount" step="0.01" required
           class="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
       </div>
+
 
       <div>
         <label for="title" class="block text-sm font-medium text-gray-700">Title:</label>
