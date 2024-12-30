@@ -51,14 +51,14 @@ export default {
 
 <template>
   <tr :class="bgClass">
-    <td class="p-3">{{ title }}</td>
-    <td class="p-3">{{ description }}</td>
-    <td class="p-3 text-right">
+    <td class="p-3 align-top text-right">
       <span :class="['rounded-md px-2 py-1.5', amountClass]">{{ formattedAmount }}</span>
     </td>
-    <td class="p-3">{{ formattedDate }}</td>
-    <td class="p-3">{{ category }}</td>
-    <td class="p-3"><a>
+    <td class="p-3 align-top">{{ title }}</td>
+    <td class="p-3 align-top">{{ description }}</td>
+    <td class="p-3 align-top">{{ formattedDate }}</td>
+    <td class="p-3 align-top">{{ category }}</td>
+    <td class="p-3 align-top"><a>
         <SimpleIcon name="icon-trash" />
       </a></td>
   </tr>
