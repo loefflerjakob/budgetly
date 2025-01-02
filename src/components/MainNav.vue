@@ -94,11 +94,11 @@ export default defineComponent({
 <template>
   <div class="flex justify-between items-center p-8">
     <LogoBudgetly />
-
-    <!-- Buttons for testing, TODO: remove later -->
-    <ActionButton text="Reset local storage" buttonStyle="default" @click="resetLocalStorage" />
-    <ActionButton text="Fill with dummy data" buttonStyle="default" @click="fillWithDummyData" />
-
+    <div class="flex gap-4">
+      <!-- Buttons for testing, TODO: remove later -->
+      <ActionButton text="Reset local storage" buttonStyle="default" @click="resetLocalStorage" />
+      <ActionButton text="Fill with dummy data" buttonStyle="default" @click="fillWithDummyData" />
+    </div>
 
     <MainActions />
   </div>

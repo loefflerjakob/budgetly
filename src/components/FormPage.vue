@@ -1,11 +1,13 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import ActionButton from './ActionButton.vue';
+import { fetchExchangeRate } from '@/services/exchangeRateService';
+import { currencies } from '@/constants/currencies';
 
 export default defineComponent({
   name: 'FormPage',
   components: {
-    ActionButton
+    ActionButton,
   },
   setup() {
     const amount = ref('');
@@ -13,14 +15,29 @@ export default defineComponent({
     const description = ref('');
     const date = ref('');
     const category = ref('');
+    const currency = ref('EUR');
 
-    const submitForm = () => {
+    const submitForm = async () => {
+      let euroAmount = parseFloat(amount.value);
+
+      // Umrechnung, falls nicht in EUR
+      if (currency.value !== 'EUR') {
+        const rate = await fetchExchangeRate(currency.value, date.value);
+        if (rate !== null) {
+          euroAmount *= rate;
+        } else {
+          alert('Failed to convert currency. Please try again.');
+          return;
+        }
+      }
+
       const newEntry = {
-        amount: amount.value,
+        amount: euroAmount.toFixed(2),
         title: title.value,
         description: description.value,
         date: date.value,
-        category: category.value
+        category: category.value,
+        currency: currency.value,
       };
 
       const existingEntries = JSON.parse(localStorage.getItem('entries') || '[]');
@@ -32,6 +49,7 @@ export default defineComponent({
       description.value = '';
       date.value = '';
       category.value = '';
+      currency.value = 'EUR';
 
       alert('Entry added successfully');
     };
@@ -42,9 +60,11 @@ export default defineComponent({
       description,
       date,
       category,
-      submitForm
+      currency,
+      currencies,
+      submitForm,
     };
-  }
+  },
 });
 </script>
 
@@ -57,7 +77,6 @@ export default defineComponent({
         <input type="number" id="amount" v-model="amount" step="0.01" required
           class="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
       </div>
-
 
       <div>
         <label for="title" class="block text-sm font-medium text-gray-700">Title:</label>
@@ -75,7 +94,9 @@ export default defineComponent({
         <label for="date" class="block text-sm font-medium text-gray-700">Date:</label>
         <input type="date" id="date" v-model="date" required
           class="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        <p class="text-xs">Please only use a date not older then a month from today (free api)</p>
       </div>
+
 
       <div>
         <label for="category" class="block text-sm font-medium text-gray-700">Category:</label>
@@ -86,6 +107,16 @@ export default defineComponent({
           <option value="transportation">Transportation</option>
           <option value="entertainment">Entertainment</option>
           <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="currency" class="block text-sm font-medium text-gray-700">Currency:</label>
+        <select id="currency" v-model="currency" required
+          class="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <option v-for="currencyOption in currencies" :key="currencyOption.value" :value="currencyOption.value">
+            {{ currencyOption.label }}
+          </option>
         </select>
       </div>
 
