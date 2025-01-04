@@ -22,12 +22,14 @@ export default defineComponent({
       const entriesStore = useEntriesStore();
       entriesStore.resetEntries();
       alert('Local storage has been reset');
+      location.reload();
     },
 
     fillWithDummyData() {
       const entriesStore = useEntriesStore();
       entriesStore.fillWithDummyData();
       alert('Local storage has been populated with dummy data');
+      location.reload();
     }
   }
 });

@@ -5,6 +5,7 @@ Handles the form submission and currency conversion
 -->
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useEntriesStore } from '@/stores/entriesStore';
 import ActionButton from './ActionButton.vue';
 import { fetchExchangeRate } from '@/services/exchangeRateService';
@@ -25,6 +26,7 @@ export default defineComponent({
     const currency = ref('EUR');
 
     const entriesStore = useEntriesStore();
+    const router = useRouter();
 
     const submitForm = async () => {
       let euroAmount = parseFloat(amount.value);
@@ -51,7 +53,6 @@ export default defineComponent({
 
       entriesStore.addEntry(newEntry);
 
-      //reset form fields
       amount.value = '';
       title.value = '';
       description.value = '';
@@ -60,6 +61,7 @@ export default defineComponent({
       currency.value = 'EUR';
 
       alert('Entry added successfully');
+      router.push('/');
     };
 
     return {
