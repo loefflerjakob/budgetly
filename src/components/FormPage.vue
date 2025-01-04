@@ -5,6 +5,7 @@ Handles the form submission and currency conversion
 -->
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useEntriesStore } from '@/stores/entriesStore';
 import ActionButton from './ActionButton.vue';
 import { fetchExchangeRate } from '@/services/exchangeRateService';
 import { currencies } from '@/constants/currencies';
@@ -23,10 +24,12 @@ export default defineComponent({
     const category = ref('');
     const currency = ref('EUR');
 
+    const entriesStore = useEntriesStore();
+
     const submitForm = async () => {
       let euroAmount = parseFloat(amount.value);
 
-      // If currency is not EUR, convert the amount to EUR
+      // if currency is not EUR, convert the amount to EUR
       if (currency.value !== 'EUR') {
         const rate = await fetchExchangeRate(currency.value, date.value);
         if (rate !== null) {
@@ -37,7 +40,6 @@ export default defineComponent({
         }
       }
 
-      // create new entry object
       const newEntry = {
         amount: euroAmount.toFixed(2),
         title: title.value,
@@ -47,10 +49,9 @@ export default defineComponent({
         currency: currency.value,
       };
 
-      const existingEntries = JSON.parse(localStorage.getItem('entries') || '[]');
-      existingEntries.push(newEntry);
-      localStorage.setItem('entries', JSON.stringify(existingEntries));
+      entriesStore.addEntry(newEntry);
 
+      //reset form fields
       amount.value = '';
       title.value = '';
       description.value = '';
@@ -77,8 +78,9 @@ export default defineComponent({
 </script>
 
 
+
 <template>
-  <div class="m-8 max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
+  <div class="m-8 max-w-xl mx-auto p-6">
     <div class="mb-6">
       <h1 class="text-2xl">Add new income/expense entry</h1>
     </div>
