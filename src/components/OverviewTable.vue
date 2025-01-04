@@ -1,9 +1,13 @@
+<!--
+Component: OverviewTable.vue
+Displays a table with all the entries in the list of expenses and income
+Handles logic for deleting entries and calculating the total sum, could be refactored into smaller components
+-->
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, onMounted, ref } from 'vue';
 import SumRow from './SumRow.vue';
 import TableRow from './TableRow.vue';
 
-// Define the type for the entry object stored in localStorage
 interface Entry {
   amount: string;
   title: string;
@@ -15,25 +19,36 @@ interface Entry {
 export default defineComponent({
   name: 'OverviewTable',
   components: {
+    SumRow,
     TableRow,
-    SumRow
   },
   setup() {
-    const entries = computed<Entry[]>(() => {
-      return JSON.parse(localStorage.getItem('entries') || '[]');
+    const entries = ref<Entry[]>([]);
+
+    onMounted(() => {
+      entries.value = JSON.parse(localStorage.getItem('entries') || '[]');
     });
 
-    const totalSum = computed(() => {
-      return entries.value.reduce((sum: number, entry: Entry) => {
-        return sum + parseFloat(entry.amount);
-      }, 0);
-    });
+    const totalSum = computed(() =>
+      entries.value.reduce((sum, entry) => sum + parseFloat(entry.amount), 0)
+    );
+
+    const deleteEntry = (index: number) => {
+      const confirmDelete = window.confirm('Are you sure you want to delete this entry?');
+
+      if (confirmDelete) {
+        entries.value.splice(index, 1);
+        localStorage.setItem('entries', JSON.stringify(entries.value));
+      }
+    };
+
 
     return {
       entries,
-      totalSum
+      totalSum,
+      deleteEntry,
     };
-  }
+  },
 });
 </script>
 
@@ -54,7 +69,8 @@ export default defineComponent({
         <tbody class="max-h-[50vh] overflow-y-auto block">
           <TableRow v-for="(entry, index) in entries" :key="index" :amount="parseFloat(entry.amount)"
             :title="entry.title" :description="entry.description" :date="new Date(entry.date)"
-            :category="entry.category" :rowIndex="index" />
+            :category="entry.category" :rowIndex="index" @delete-row="deleteEntry" />
+
         </tbody>
         <SumRow :sum="totalSum" />
       </table>
@@ -63,7 +79,7 @@ export default defineComponent({
 </template>
 
 
-
+<!-- Styling for pretty column widths -->
 <style>
 thead,
 tbody tr,

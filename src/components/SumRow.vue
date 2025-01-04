@@ -1,3 +1,7 @@
+<!--
+Component: SumRow.vue
+Displays the total sum of all entries in the table
+-->
 <script lang="ts">
 import { defineComponent } from 'vue';
 

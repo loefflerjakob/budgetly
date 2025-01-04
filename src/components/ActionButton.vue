@@ -1,3 +1,7 @@
+<!--
+Component: ActionButton.vue
+Simple button component that can be styled with different colors.
+-->
 <script lang="ts">
 export default {
   name: 'ActionButton',

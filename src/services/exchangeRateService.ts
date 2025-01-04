@@ -7,7 +7,7 @@ export async function fetchExchangeRate(base: string, date: string): Promise<num
     const data = await response.json()
 
     if (data.success && data.rates && data.rates.EUR) {
-      return data.rates.EUR // Return the rate for EUR
+      return data.rates.EUR
     } else {
       console.error('Failed to fetch exchange rate:', data)
       return null

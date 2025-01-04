@@ -1,3 +1,7 @@
+<!--
+Component: LogoBudgetly.vue
+Simple component that displays the Budgetly logo and tagline
+-->
 <script lang="ts">
 export default {
   name: 'LogoBudgetly'

@@ -1,3 +1,7 @@
+<!--
+Component: MainActions.vue
+Displays the main actions available to the user, in this case just the router link to the form page
+-->
 <script lang="ts">
 import ActionButton from './ActionButton.vue';
 

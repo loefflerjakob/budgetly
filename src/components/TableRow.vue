@@ -1,3 +1,7 @@
+<!--
+Component: TableRow.vue
+Displays a single row in the table of expenses and income
+-->
 <script lang="ts">
 import SimpleIcon from './SimpleIcon.vue';
 
@@ -32,6 +36,7 @@ export default {
   components: {
     SimpleIcon,
   },
+  // Computed properties for formatting the date and amount + bg classes for even/odd rows
   computed: {
     formattedDate() {
       return new Intl.DateTimeFormat('de-DE', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(this.date);
@@ -58,8 +63,10 @@ export default {
     <td class="p-3 align-top">{{ description }}</td>
     <td class="p-3 align-top">{{ formattedDate }}</td>
     <td class="p-3 align-top">{{ category }}</td>
-    <td class="p-3 align-top"><a>
+    <td class="p-3 align-top">
+      <a @click="$emit('delete-row', rowIndex)">
         <SimpleIcon name="icon-trash" />
-      </a></td>
+      </a>
+    </td>
   </tr>
 </template>

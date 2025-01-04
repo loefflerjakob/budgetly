@@ -1,3 +1,8 @@
+<!--
+Component: MainNav.vue
+Displays the main navigation bar with the Budgetly logo, main actions, and testing buttons
+-->
+
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ActionButton from './ActionButton.vue';
@@ -19,10 +24,9 @@ export default defineComponent({
       alert('Local storage has been reset');
     },
 
-    // Method to fill localStorage with dummy data for testing
+    // Method to fill localStorage with dummy data for testing. Thx ChatGPT for generating these entries.
     fillWithDummyData() {
       const dummyEntries = [
-        // Income entries (positive amounts)
         {
           amount: '100.50',
           title: 'Groceries',
@@ -51,8 +55,6 @@ export default defineComponent({
           date: '2024-12-28',
           category: 'other'
         },
-
-        // Expense entries (negative amounts)
         {
           amount: '-30.00',
           title: 'Dinner Out',
@@ -83,7 +85,6 @@ export default defineComponent({
         }
       ];
 
-      // Save the dummy entries to localStorage
       localStorage.setItem('entries', JSON.stringify(dummyEntries));
       alert('Local storage has been populated with dummy data');
     }
@@ -95,7 +96,6 @@ export default defineComponent({
   <div class="flex justify-between items-center p-8">
     <LogoBudgetly />
     <div class="flex gap-4">
-      <!-- Buttons for testing, TODO: remove later -->
       <ActionButton text="Reset local storage" buttonStyle="default" @click="resetLocalStorage" />
       <ActionButton text="Fill with dummy data" buttonStyle="default" @click="fillWithDummyData" />
     </div>

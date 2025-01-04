@@ -1,6 +1,9 @@
 <!--
-HOW TO ADD NEW ICONS TO THIS COMPONENT
+Component: SimpleIcon.vue
+Displays a simple SVG icon based on the name prop
+Could have used icon library, but not necessary for this simple app
 
+HOW TO ADD NEW ICONS TO THIS COMPONENT
 1. Go to https://tablericons.com/
 2. Set Stroke to 1.25 and Size to 24
 3. Search Icon, copy svg code

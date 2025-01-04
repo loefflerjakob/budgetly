@@ -1,3 +1,8 @@
+<!--
+Component: FormPage.vue
+Displays a form to add a new entry to the list of expenses and income
+Handles the form submission and currency conversion
+-->
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import ActionButton from './ActionButton.vue';
@@ -20,7 +25,7 @@ export default defineComponent({
     const submitForm = async () => {
       let euroAmount = parseFloat(amount.value);
 
-      // Umrechnung, falls nicht in EUR
+      // If currency is not EUR, convert the amount to EUR
       if (currency.value !== 'EUR') {
         const rate = await fetchExchangeRate(currency.value, date.value);
         if (rate !== null) {
@@ -31,6 +36,7 @@ export default defineComponent({
         }
       }
 
+      // create new entry object
       const newEntry = {
         amount: euroAmount.toFixed(2),
         title: title.value,
