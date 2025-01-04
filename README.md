@@ -1,18 +1,6 @@
-# budgetly
+# Budgetly
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+This project is created by Melanie Kalkhofer and Jakob Löffler for the course "Hypermedia UX Engineering"
 
 ## Project Setup
 
@@ -26,20 +14,22 @@ npm install
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
 npm run test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## API Key, .env file
+
+To enable the automatic currency calculator feature, create a `.env` file in the root of your project with the following content:
 
 ```sh
-npm run lint
+VITE_FX_FEED_API_KEY=your_key_here
 ```
+
+A api key can be generated from [FxFeed](https://fxfeed.io/) or obtained from the creator of this project.
+
+## Minor issue
+
+There is a minor issue in the project with the bar chart: it only updates when the page is completely refreshed.

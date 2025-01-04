@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import OverviewTable from '../components/OverviewTable.vue'
 import FormPage from '../components/FormPage.vue'
+import MainPage from '@/components/MainPage.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Overview',
-    component: OverviewTable,
+    name: 'Main Page',
+    component: MainPage,
   },
   {
     path: '/form',

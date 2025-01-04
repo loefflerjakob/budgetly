@@ -8,6 +8,7 @@ import { defineComponent, ref } from 'vue';
 import ActionButton from './ActionButton.vue';
 import { fetchExchangeRate } from '@/services/exchangeRateService';
 import { currencies } from '@/constants/currencies';
+import { categories } from '@/constants/categories';
 
 export default defineComponent({
   name: 'FormPage',
@@ -68,6 +69,7 @@ export default defineComponent({
       category,
       currency,
       currencies,
+      categories,
       submitForm,
     };
   },
@@ -123,12 +125,9 @@ export default defineComponent({
         <select id="category" v-model="category" required
           class="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
           <option value="">Select a category</option>
-          <option value="Food">Food</option>
-          <option value="Transportation">Transportation</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Salary">Salary/Income</option>
-          <option value="Utilities">Utilities</option>
-          <option value="Other">Other</option>
+          <option v-for="category in categories" :key="category.value">
+            {{ category.value }}
+          </option>
         </select>
       </div>
 

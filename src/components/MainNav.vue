@@ -27,40 +27,61 @@ export default defineComponent({
     // Method to fill localStorage with dummy data for testing. Thx ChatGPT for generating these entries.
     fillWithDummyData() {
       const dummyEntries = [
+        // September 2024 Entries
+        {
+          amount: '150.00',
+          title: 'Freelance Work',
+          description: 'Income from a freelance project',
+          date: '2024-09-10',
+          category: 'Other'
+        },
+        {
+          amount: '-45.00',
+          title: 'Gas for Car',
+          description: 'Filling up the car tank',
+          date: '2024-09-12',
+          category: 'Transportation'
+        },
+
+        // October 2024 Entries
+        {
+          amount: '200.00',
+          title: 'Freelance Project Payment',
+          description: 'Payment for freelance work completed',
+          date: '2024-10-05',
+          category: 'Other'
+        },
+        {
+          amount: '-30.00',
+          title: 'Dinner at Restaurant',
+          description: 'Dinner with colleagues',
+          date: '2024-10-15',
+          category: 'Food'
+        },
+
+        // November 2024 Entries
+        {
+          amount: '500.00',
+          title: 'Freelance Income',
+          description: 'Payment received for a project',
+          date: '2024-11-05',
+          category: 'Other'
+        },
+        {
+          amount: '-60.00',
+          title: 'Internet Bill',
+          description: 'Monthly internet subscription',
+          date: '2024-11-10',
+          category: 'Utilities'
+        },
+
+        // December 2024 Entries
         {
           amount: '50.00',
           title: 'Movie Ticket',
           description: 'Watching a new release',
           date: '2024-12-27',
           category: 'Entertainment'
-        },
-        {
-          amount: '200.00',
-          title: 'Freelance Project',
-          description: 'Income from freelance work',
-          date: '2024-12-28',
-          category: 'Other'
-        },
-        {
-          amount: '100.50',
-          title: 'Groceries',
-          description: 'Weekly grocery shopping',
-          date: '2024-12-25',
-          category: 'Food'
-        },
-        {
-          amount: '-50.00',
-          title: 'Monthly Subscription',
-          description: 'Subscription to a premium service',
-          date: '2024-12-31',
-          category: 'Other'
-        },
-        {
-          amount: '-15.00',
-          title: 'Bus Ticket',
-          description: 'Public transportation for work',
-          date: '2024-12-30',
-          category: 'Transportation'
         },
         {
           amount: '-30.00',
@@ -77,34 +98,44 @@ export default defineComponent({
           category: 'Salary'
         },
         {
-          amount: '-60.00',
-          title: 'Internet Bill',
-          description: 'Monthly internet subscription',
-          date: '2024-12-31',
-          category: 'Utilities'
-        },
-        {
-          amount: '-10.00',
-          title: 'Movie Snacks',
-          description: 'Popcorn and drinks at the cinema',
-          date: '2024-12-30',
-          category: 'Entertainment'
-        },
-        {
           amount: '-100.00',
           title: 'Electricity Bill',
           description: 'Monthly electricity payment',
           date: '2024-12-31',
           category: 'Utilities'
         },
+
+        // January 2025 Entries (up to January 4th)
+        {
+          amount: '300.00',
+          title: 'Freelance Payment',
+          description: 'Income from a freelance project',
+          date: '2025-01-03',
+          category: 'Other'
+        },
+        {
+          amount: '-35.00',
+          title: 'Restaurant Meal',
+          description: 'Dinner at a local restaurant',
+          date: '2025-01-02',
+          category: 'Food'
+        },
+        {
+          amount: '-40.00',
+          title: 'Mobile Phone Bill',
+          description: 'Monthly phone service fee',
+          date: '2025-01-01',
+          category: 'Utilities'
+        },
         {
           amount: '20.00',
           title: 'Taxi Ride',
           description: 'Cab fare to office',
-          date: '2024-12-26',
+          date: '2025-01-04',
           category: 'Transportation'
-        },
+        }
       ];
+
 
       localStorage.setItem('entries', JSON.stringify(dummyEntries));
       alert('Local storage has been populated with dummy data');
