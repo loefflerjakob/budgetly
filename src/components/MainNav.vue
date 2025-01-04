@@ -28,61 +28,82 @@ export default defineComponent({
     fillWithDummyData() {
       const dummyEntries = [
         {
-          amount: '100.50',
-          title: 'Groceries',
-          description: 'Weekly grocery shopping',
-          date: '2024-12-25',
-          category: 'food'
-        },
-        {
-          amount: '20.00',
-          title: 'Taxi Ride',
-          description: 'Cab fare to office',
-          date: '2024-12-26',
-          category: 'transportation'
-        },
-        {
           amount: '50.00',
           title: 'Movie Ticket',
           description: 'Watching a new release',
           date: '2024-12-27',
-          category: 'entertainment'
+          category: 'Entertainment'
         },
         {
           amount: '200.00',
           title: 'Freelance Project',
           description: 'Income from freelance work',
           date: '2024-12-28',
-          category: 'other'
+          category: 'Other'
         },
         {
-          amount: '-30.00',
-          title: 'Dinner Out',
-          description: 'Eating at a restaurant with friends',
-          date: '2024-12-29',
-          category: 'food'
-        },
-        {
-          amount: '-15.00',
-          title: 'Bus Ticket',
-          description: 'Public transportation for work',
-          date: '2024-12-30',
-          category: 'transportation'
-        },
-        {
-          amount: '-10.00',
-          title: 'Movie Snacks',
-          description: 'Popcorn and drinks at the cinema',
-          date: '2024-12-30',
-          category: 'entertainment'
+          amount: '100.50',
+          title: 'Groceries',
+          description: 'Weekly grocery shopping',
+          date: '2024-12-25',
+          category: 'Food'
         },
         {
           amount: '-50.00',
           title: 'Monthly Subscription',
           description: 'Subscription to a premium service',
           date: '2024-12-31',
-          category: 'other'
-        }
+          category: 'Other'
+        },
+        {
+          amount: '-15.00',
+          title: 'Bus Ticket',
+          description: 'Public transportation for work',
+          date: '2024-12-30',
+          category: 'Transportation'
+        },
+        {
+          amount: '-30.00',
+          title: 'Dinner Out',
+          description: 'Eating at a restaurant with friends',
+          date: '2024-12-29',
+          category: 'Food'
+        },
+        {
+          amount: '500.00',
+          title: 'Salary',
+          description: 'Monthly salary from employer',
+          date: '2024-12-31',
+          category: 'Salary'
+        },
+        {
+          amount: '-60.00',
+          title: 'Internet Bill',
+          description: 'Monthly internet subscription',
+          date: '2024-12-31',
+          category: 'Utilities'
+        },
+        {
+          amount: '-10.00',
+          title: 'Movie Snacks',
+          description: 'Popcorn and drinks at the cinema',
+          date: '2024-12-30',
+          category: 'Entertainment'
+        },
+        {
+          amount: '-100.00',
+          title: 'Electricity Bill',
+          description: 'Monthly electricity payment',
+          date: '2024-12-31',
+          category: 'Utilities'
+        },
+        {
+          amount: '20.00',
+          title: 'Taxi Ride',
+          description: 'Cab fare to office',
+          date: '2024-12-26',
+          category: 'Transportation'
+        },
       ];
 
       localStorage.setItem('entries', JSON.stringify(dummyEntries));

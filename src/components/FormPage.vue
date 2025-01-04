@@ -77,13 +77,27 @@ export default defineComponent({
 
 <template>
   <div class="m-8 max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
+    <div class="mb-6">
+      <h1 class="text-2xl">Add new income/expense entry</h1>
+    </div>
+
     <form @submit.prevent="submitForm" class="space-y-4">
+      <div>
+        <label for="currency" class="block text-sm font-medium text-gray-700">Currency:</label>
+        <select id="currency" v-model="currency" required
+          class="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <option v-for="currencyOption in currencies" :key="currencyOption.value" :value="currencyOption.value">
+            {{ currencyOption.label }}
+          </option>
+        </select>
+      </div>
       <div>
         <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
         <input type="number" id="amount" v-model="amount" step="0.01" required
           class="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-      </div>
+        <p class="text-xs">Use negative value for expenses, positives for income</p>
 
+      </div>
       <div>
         <label for="title" class="block text-sm font-medium text-gray-700">Title:</label>
         <input type="text" id="title" v-model="title" required
@@ -109,22 +123,17 @@ export default defineComponent({
         <select id="category" v-model="category" required
           class="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
           <option value="">Select a category</option>
-          <option value="food">Food</option>
-          <option value="transportation">Transportation</option>
-          <option value="entertainment">Entertainment</option>
-          <option value="other">Other</option>
+          <option value="Food">Food</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Salary">Salary/Income</option>
+          <option value="Utilities">Utilities</option>
+          <option value="Other">Other</option>
         </select>
       </div>
 
-      <div>
-        <label for="currency" class="block text-sm font-medium text-gray-700">Currency:</label>
-        <select id="currency" v-model="currency" required
-          class="mt-1 block w-full h-10 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-          <option v-for="currencyOption in currencies" :key="currencyOption.value" :value="currencyOption.value">
-            {{ currencyOption.label }}
-          </option>
-        </select>
-      </div>
+
+
 
       <ActionButton text="Submit" :buttonStyle="'accent'" class="flex justify-center" />
     </form>
