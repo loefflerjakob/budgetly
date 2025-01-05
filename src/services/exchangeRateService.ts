@@ -1,4 +1,3 @@
-// src/services/exchangeRateService.ts
 export async function fetchExchangeRate(base: string, date: string): Promise<number | null> {
   const apiKey = import.meta.env.VITE_FX_FEED_API_KEY
   const url = `https://api.fxfeed.io/v1/historical?base=${base}&currencies=EUR&date=${date}&api_key=${apiKey}`
