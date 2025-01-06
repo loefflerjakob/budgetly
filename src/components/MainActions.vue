@@ -16,7 +16,7 @@ export default {
 <template>
   <div class="flex gap-2">
     <RouterLink to="/form">
-      <ActionButton text="Add Expense or Income" buttonStyle="default" />
+      <ActionButton text="Add Expense or Income" buttonStyle="accent" />
     </RouterLink>
   </div>
 </template>
