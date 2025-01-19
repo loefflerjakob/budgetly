@@ -3,7 +3,10 @@ import { fetchExchangeRate } from '@/services/exchangeRateService'
 
 describe('fetch valid exchange rate', () => {
   it('should fetch and return the exchange rate when API response is valid', async () => {
-    const rate = await fetchExchangeRate('USD', '2025-01-19')
+    const rate = await fetchExchangeRate(
+      'USD',
+      new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().split('T')[0],
+    )
     expect(rate).not.toBeNull()
     expect(typeof rate).toBe('number')
     expect(rate).toBeGreaterThan(0)
