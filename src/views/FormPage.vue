@@ -7,7 +7,7 @@ Handles the form submission and currency conversion
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useEntriesStore } from '@/stores/entriesStore';
-import ActionButton from './ActionButton.vue';
+import ActionButton from '../components/ActionButton.vue';
 import { fetchExchangeRate } from '@/services/exchangeRateService';
 import { currencies } from '@/constants/currencies';
 import { categories } from '@/constants/categories';

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import FormPage from '../components/FormPage.vue'
-import MainPage from '@/components/MainPage.vue'
+import FormPage from '@/views/FormPage.vue'
+import MainPage from '@/views/MainPage.vue'
 
 const routes = [
   {

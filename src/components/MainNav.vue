@@ -5,9 +5,9 @@ Displays the main navigation bar with the Budgetly logo and some action buttons
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useEntriesStore } from '@/stores/entriesStore';
-import ActionButton from './ActionButton.vue';
-import LogoBudgetly from './LogoBudgetly.vue';
-import MainActions from './MainActions.vue';
+import ActionButton from '@/components/ActionButton.vue';
+import LogoBudgetly from '@/components/LogoBudgetly.vue';
+import MainActions from '@/components/MainActions.vue';
 
 export default defineComponent({
   name: 'MainNav',

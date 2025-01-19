@@ -1,6 +1,6 @@
 <script lang="ts">
-import BarChart from './BarChart.vue';
-import OverviewTable from './OverviewTable.vue';
+import BarChart from '@/components/BarChart.vue';
+import OverviewTable from '@/components/OverviewTable.vue';
 
 export default {
   name: 'MainPage',

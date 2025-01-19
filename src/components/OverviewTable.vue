@@ -6,8 +6,8 @@ Handles logic for deleting entries and calculating the total sum, could be refac
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useEntriesStore } from '@/stores/entriesStore';
-import SumRow from './SumRow.vue';
-import TableRow from './TableRow.vue';
+import SumRow from '@/components/SumRow.vue';
+import TableRow from '@/components/TableRow.vue';
 
 interface Entry {
   amount: string;

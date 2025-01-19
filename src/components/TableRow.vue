@@ -3,7 +3,7 @@ Component: TableRow.vue
 Displays a single row in the table of expenses and income
 -->
 <script lang="ts">
-import SimpleIcon from './SimpleIcon.vue';
+import SimpleIcon from '@/components/SimpleIcon.vue';
 
 export default {
   name: 'TableRow',
