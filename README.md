@@ -32,4 +32,4 @@ A api key can be generated from [FxFeed](https://fxfeed.io/) or obtained from th
 
 ## Minor issue
 
-There is a minor issue in the project with the bar chart: it only updates when the page is completely refreshed.
+There is a minor issue in the project with the bar chart: when deleting a table row, the bar chart only updates at page refresh
